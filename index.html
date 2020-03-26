@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Guardiões da Saúde</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Guardiões da Saúde</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#o-que-e" class="nav-link">O que é?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#entendendo-a-vigilancia-em-saude" class="nav-link">Entendendo a Vigilância em Saúde</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#vigilancia-em-saude-publica-tradicional" class="nav-link">Vigilância em Saúde Pública Tradicional</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vigilancia-participativa" class="nav-link">Vigilância Participativa</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#historico" class="nav-link">Histórico</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#atualmente" class="nav-link">Atualmente!</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#objetivos" class="nav-link">Objetivos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#publico-alvo" class="nav-link">Público-alvo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#beneficios" class="nav-link">Benefícios</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#novas-funcionalidades" class="nav-link">Novas funcionalidades</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#desenvolvimento" class="nav-link">Desenvolvimento</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#api" class="nav-link">API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#metodo-de-comunicacao" class="nav-link">Método de comunicação</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#proposta-agora" class="nav-link">Proposta - Agora</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#mudancas-aceitas" class="nav-link">Mudanças aceitas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#rotina" class="nav-link">Rotina</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#passo-a-passo" class="nav-link">Passo a passo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="o-que-e">O que é?</h1>
+<p>O aplicativo <strong>Guardiões da Saúde</strong> é uma aplicação para dispositivos móveis gratuita e tem como intuito fortalecer a vigilância em saúde, por meio da estratégia da <strong>vigilância participativa</strong>. </p>
+<p>A partir de participações voluntárias dos usuários é possível identificar alterações no padrão epidemiológico das doenças em um determinado local. Assim a população passa de <strong>agente passivo</strong> no processo de vigilância para <strong>agente ativo</strong>, reforçando a importância da participação social. Além de promover a adaptação no âmbito da saúde em moldar-se conforme a necessidade pública de saúde, no que se refere ao aprimoramento da vigilância em saúde por meio da detecção digital de doenças.</p>
+<h1 id="entendendo-a-vigilancia-em-saude">Entendendo a Vigilância em Saúde</h1>
+<h2 id="vigilancia-em-saude-publica-tradicional">Vigilância em Saúde Pública Tradicional</h2>
+<p>A Vigilância em Saúde se relaciona às práticas de atenção voltadas para o monitoramento e controle de agravos de importância em saúde pública, seja por meio de <strong>notificação ou busca ativa de casos</strong>. Nesse sentido, a população se torna um <strong>participante passivo</strong> nesse processo e majoritariamente, nesse intervalo entre o adoecimento e a identificação do caso, pode gerar um <strong>potencial risco para saúde pública</strong>. Como maneira de contribuir para o benefício da Vigilância em Saúde, a Vigilância Participativa <strong>oportuniza a situação de saúde rotineira</strong> da população em tempo real.</p>
+<h2 id="vigilancia-participativa">Vigilância Participativa</h2>
+<p>A Vigilância Participativa possibilita o envolvimento da população no processo de Vigilância em Saúde, por meio de <strong>participações voluntárias</strong>, potencializando o fortalecimento da <strong>participação social </strong>(<strong>comunidade colaborativa</strong>). Nesse sentido, a população exerce um <strong>papel ativo</strong> no processo de vigilância e possibilita a identificação de alterações no padrão epidemiológico das doenças, se tornando um<strong> canal complementar</strong> de informações de saúde. </p>
+<h1 id="historico">Histórico</h1>
+<p>O aplicativo é uma proposta desenvolvida no ano de 2007, onde o Ministério da Saúde realizou o monitoramento do seu primeiro evento de massa e iniciou, com eventos importantes e com maior fluxo de estrangeiros entrando e saindo do país foram, respectivamente, a Copa do Mundo FIFA 2014 e as Olímpiadas em 2016, que juntos superaram mais de 4 milhões de espectadores.</p>
+<p>Na Copa do Mundo    FIFA 2014, entre o período de maio a julho foram contabilizados 9.418 downloads do aplicativo, 7.275 cadastros de usuários, 4.672 usuários ativos. Houve 44.029 participações dos 4.672 usuários ativos informando sua condição de saúde.</p>
+<p>Em 2015 o aprimoramento do desenvolvimento tecnológico do aplicativo foi realizado por meio da startup Epitrack, sediada em Recife/Pernambuco e a demonstração do aplicativo no evento Epicrowd. </p>
+<p>Em 2016, o aplicativo foi utilizado novamente nos Jogos Olímpicos e Paraolímpicos Rio de Janeiro (Brasil) em parceria entre Skoll Global Threats Fund (SGTF), Ministério da Saúde do Brasil, start-up Epitrack e a A Associação de Profissionais de Epidemiologia de Campo (ProEpi). Além disso, em 2017 a ProEpi teve oportunidade de participar da 15ª Edição da Mostra Nacional de Experiências Bem-Sucedidas em Epidemiologia, Prevenção e Controle de Doenças (Expoepi) em Brasília (Brasil) para demonstração e promoção do aplicativo. </p>
+<p>Em 2017, o aplicativo recebeu uma nova versão para o país da Colômbia, em especial, para auxílio a visita do papa. Resultado de um trabalho entre parceiros: A Associação de Profissionais de Epidemiologia de Campo (ProEpi) e a Universidade de Brasília, por intermédio do Instituto Nacional de Saúde da Colômbia. O aplicativo recebeu mais de 1 mil downloads.</p>
+<p><strong>Gráfico 01 </strong>- <em>Apresentação da linha do tempo do aplicativo</em></p>
+<p><img src="image_0.png" alt="Kitten"
+    title="A cute kitten" width="100%" height="500" /></p>
+<p><img alt="image alt text" src="image_1.png" /><img alt="image alt text" src="image_2.png" /><img alt="image alt text" src="image_3.png" /></p>
+<h1 id="atualmente">Atualmente!</h1>
+<p><img src="image_4.png" alt="Kitten"
+    title="A cute kitten" width="100%" height="600px" /></p>
+<p><img src="image_5.png" alt="Kitten"
+    title="A cute kitten" width="30%" height="700px" />
+<img src="image_6.png" alt="Kitten"
+    title="A cute kitten" width="30%" height="700px" />
+<img src="image_7.png" alt="Kitten"
+    title="A cute kitten" width="30%" height="700px" /></p>
+<p>A aplicação está voltada para o informe do estado saúde do usuário e de seu parentes, gerando assim um diário da saúde de cada indivíduo, apresentando formas de prevenir doenças e ajudar na localização de instituições de saúde e farmácias.</p>
+<h1 id="objetivos">Objetivos</h1>
+<ul>
+<li>
+<p>Conhecimento sobre a situação de saúde da população</p>
+</li>
+<li>
+<p>Estratégia de detecção de síndromes pela comunidade colaborativa</p>
+</li>
+</ul>
+<h1 id="publico-alvo">Público-alvo</h1>
+<p>População residente no país.</p>
+<h1 id="beneficios">Benefícios</h1>
+<ul>
+<li>
+<p>Promover a detecção de possíveis síndromes em tempo oportuno</p>
+</li>
+<li>
+<p>Informar a situação de saúde em lugares remotos e em tempo real</p>
+</li>
+<li>
+<p>Canal de vigilância, promoção e educação em saúde para a população</p>
+</li>
+</ul>
+<h1 id="novas-funcionalidades">Novas funcionalidades</h1>
+<p><img src="image_8.png" alt="Kitten"
+    title="A cute kitten" width="24%" height="650px" />
+<img src="image_9.png" alt="Kitten"
+    title="A cute kitten" width="24%" height="650px" />
+<img src="image_10.png" alt="Kitten"
+    title="A cute kitten" width="24%" height="650px" />
+<img src="image_11.png" alt="Kitten"
+    title="A cute kitten" width="24%" height="650px" /></p>
+<ul>
+<li>
+<p>Duas modalidades de perfis </p>
+<ul>
+<li>
+<p>Cadastro de perfil de um usuário "comum", que pode administrar vários perfis secundário.</p>
+</li>
+<li>
+<p>Migração do perfil "comum" para um perfil “profissional de Saúde“, que autoriza o usuário a cadastrar perfis secundários e classificá-los pelo endereço.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Opção de discagem de para um serviço <strong>emergência</strong>. Após o informe de saúde como "Mal" e apresentado ao usuário a opção de discar para o serviço de emergência local</p>
+</li>
+<li>
+<p>Gerenciamento de perfil principal e perfis secundários com mais informações </p>
+</li>
+<li>
+<p>Dashboard - Apresentação da indicação e conexão ao mapa do Healthmap</p>
+</li>
+<li>
+<p>Tradução dinâmica</p>
+</li>
+</ul>
+<h1 id="desenvolvimento">Desenvolvimento</h1>
+<h1 id="api">API</h1>
+<p>Uma API é um conjunto padrões de programação que permite a construção de aplicativos cada vez mais leves e rápidos, pois sua utilização permite que serviços sejam apenas executados dentro do aplicativo, tirando a necessidade de criar um código dentro dele para executar tal serviço.</p>
+<p><strong>Por que temos uma API</strong></p>
+<p>Cada administrador necessita acessar o painel de controle do seu aplicativo para ter conseguir inserir e retirar conteúdos e sintomas, além disso ele também precisa conseguir acessar a sua dashboard e todos esses dados precisam ser mostrados no aplicativo. A API consegue unir todas essas necessidades com facilidade uma vez que ao criar serviços (funções) dentro dela, ela consegue buscar informações no banco de dados, tratar essas informações e distribuí-las para o aplicativo e dashboard e maneira fácil e rápida.  </p>
+<h1 id="metodo-de-comunicacao">Método de comunicação</h1>
+<h1 id="proposta-agora">Proposta - Agora</h1>
+<p>No intuito de desenvolvimento do aplicativo para cada país que tiver o interesse em participar dessa colaboração, por meio do desenvolvimento atual, o método de comunicação no que se refere a modificação e personalização da estética do aplicado e inserção de informações e características de cada país, será efetuado mediante o sistema de requisições de alteração no aplicativo. Esse mecanismo se justifica, pois nesse cenário atual, existe uma limitação quanto dispor de autonomia para cada país modificar o seu aplicativo, pois todos os países terão o aplicativo hospedado na mesma base de dados. Ou seja, existe a vulnerabilidade e o risco e ação de terceiros no banco de dados. </p>
+<h1 id="mudancas-aceitas">Mudanças aceitas</h1>
+<ul>
+<li>
+<p>Paleta de cor do aplicativo</p>
+</li>
+<li>
+<p>Portal digital para a seção de notícias</p>
+</li>
+<li>
+<p>Dicas de saúde (telefones, informes e local)</p>
+</li>
+</ul>
+<h1 id="rotina">Rotina</h1>
+<p><strong>Cadastro:</strong> Para o cadastro será efetuado por meio de um e-mail válido e a senha será um token padrão para cada país. </p>
+<p><strong>Tempo de resposta da requisição</strong>: após o envio, a resposta será enviada em 48h</p>
+<p><strong>Resposta</strong>: Após requisição modificada, o usuário receberá um e-mail informando que as modificações foram efetuadas.</p>
+<h1 id="passo-a-passo">Passo a passo</h1>
+<p>Para ter acesso ao mecanismo de requisições, basta acessar o site da ProEpi (<a href="http://www.proepi.org.br/xxxxx">www.proepi.org.br/xxxxx</a>) e acessar o ambiente restrito dos Guardiões da Saúde. (definir nome)</p>
+<ol>
+<li>
+<p>O usuário administrador de cada países será cadastrado na plataforma, por meio da chave de acesso disponibilizada para cada país.</p>
+</li>
+<li>
+<p>Após o cadastrado, o usuário receberá o login e senha, poderá efetuar o login na plataforma. </p>
+</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"previous": 80, "help": 191, "next": 78, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.1
+Build Date UTC : 2020-03-26 20:28:56
+-->
