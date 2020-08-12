@@ -1,21 +1,22 @@
-version: '3.6'
+version: "3"
 services:
-  webserver:
-    image: nginx
-    ports:
-      - "80:80"
   db:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db
   web:
     build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
     volumes:
       - .:/myapp
-    working_dir: /myapp
-    command: puma
     ports:
-      - "3000:3000"
+      - "3001:3001"
     depends_on:
       - db
     environment:
@@ -24,3 +25,22 @@ services:
       MAILER_URL:
       TWITTER_API_CONSUMER_SECRET: 
       TWITTER_API_ACESS_TOKEN_SECRET: 
+  metabase:
+    image: metabase/metabase
+    restart: always
+    ports:
+      - 8080:3000
+    volumes:
+      # declare your mount volume /host/dir:/container/dir
+      - /home/app/metabase-data:/usr/share/metabase-data
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: myapp_development
+      MB_DB_PORT: 5432
+      MB_DB_USER: postgres 
+      MB_DB_PASS: postgres
+      MB_DB_HOST: db
+    depends_on:
+      - db
+    links:
+      - db
