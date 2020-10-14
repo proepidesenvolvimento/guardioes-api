@@ -31,4 +31,16 @@ class ApplicationController < ActionController::API
     }, status: :bad_request
   end
 
+  def current_ability
+    if admin_signed_in?
+      @current_ability ||= Ability.new(current_admin)
+    elsif manager_signed_in?
+      @current_ability ||= Ability.new(current_manager)
+    elsif group_manager_signed_in?
+      @current_ability ||= Ability.new(current_group_manager)
+    else
+      @current_ability ||= Ability.new(current_user)
+    end
+  end
+  
 end

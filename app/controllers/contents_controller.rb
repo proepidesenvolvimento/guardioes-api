@@ -1,21 +1,26 @@
 class ContentsController < ApplicationController
   before_action :authenticate_admin!, only: [:create, :destroy, :update]
   before_action :set_content, only: [:show, :update, :destroy]
+  
 
   # GET /contents
   def index
-    if current_user.nil?
+    if current_user.nil? && current_manager.nil?
       user = current_admin
-    else
+    elsif current_admin.nil? && current_user.nil?
       user = current_manager
+    else
+      user = current_user
     end
     @contents = Content.user_country(user.app_id)
 
+    authorize! :read, @contents
     render json: @contents
   end
 
   # GET /contents/1
   def show
+    authorize! :read, @content
     render json: @content
   end
 
@@ -44,6 +49,12 @@ class ContentsController < ApplicationController
     @content.destroy
 
     head :no_content
+  end
+
+  def check_authenticated_admin_or_manager
+    if current_admin.nil? && current_group_manager.nil?
+      return render json: {}, status: :ok
+    end
   end
 
   private

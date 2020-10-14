@@ -160,11 +160,11 @@ ActiveRecord::Schema.define(version: 2020_10_12_185741) do
     t.string "title"
     t.text "warning_message"
     t.text "go_to_hospital_message"
+    t.text "feedback_message"
     t.bigint "syndrome_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "symptom_id"
-    t.string "feedback_message"
     t.index ["symptom_id"], name: "index_messages_on_symptom_id"
     t.index ["syndrome_id"], name: "index_messages_on_syndrome_id"
   end
@@ -307,9 +307,9 @@ ActiveRecord::Schema.define(version: 2020_10_12_185741) do
     t.string "aux_code"
     t.bigint "school_unit_id"
     t.integer "policy_version", default: 1, null: false
-    t.string "phone"
-    t.boolean "is_vigilance"
     t.integer "streak", default: 0
+    t.string "phone"
+    t.boolean "is_vigilance", default: false
     t.index ["app_id"], name: "index_users_on_app_id"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
