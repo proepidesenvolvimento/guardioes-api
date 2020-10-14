@@ -1,5 +1,5 @@
 class ContentsController < ApplicationController
-  before_action :authenticate_admin!, only: [:create, :destroy, :update]
+  # before_action :authenticate_admin!, only: [:create, :destroy, :update]
   before_action :set_content, only: [:show, :update, :destroy]
   
 
@@ -14,14 +14,22 @@ class ContentsController < ApplicationController
     end
     @contents = Content.user_country(user.app_id)
 
-    authorize! :read, @contents
-    render json: @contents
+    begin
+      authorize! :read, @contents
+      render json: @contents
+    rescue => exception
+      render json: { error: exception }, status: :unauthorized
+    end
   end
 
   # GET /contents/1
   def show
-    authorize! :read, @content
-    render json: @content
+    begin
+      authorize! :read, @content
+      render json: @content
+    rescue => exception
+      render json: { error: exception }, status: :unauthorized
+    end
   end
 
   # POST /contents
