@@ -17,7 +17,12 @@ class Ability
         else 
           can :manage, [ Manager, GroupManager, Symptom, Syndrome, Content, User]
         end
-      # when Manager
+      when Manager
+        can :create, user.permission.models_create
+        can :read, user.permission.models_read
+        can :update, user.permission.models_update
+        can :destroy, user.permission.models_destroy
+        can :manage, user.permission.models_manage
       # when GroupManager
     end 
   end
