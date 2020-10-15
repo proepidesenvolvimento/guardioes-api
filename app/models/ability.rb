@@ -14,11 +14,11 @@ class Ability
       when Admin
         if user.is_god?
           can :manage, :all
-        else
+        else 
           can :manage, [ Manager, GroupManager, Symptom, Syndrome, Content, User]
         end
       # when Manager
       # when GroupManager
-    end
+    end 
   end
 end
