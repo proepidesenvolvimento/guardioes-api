@@ -1,10 +1,16 @@
 class ManagersController < ApplicationController
-  before_action :authenticate_admin!, only: [:index]
+  # before_action :authenticate_admin!, only: [:index]
   before_action :set_manager, only: [:show, :update, :destroy]
   before_action :set_app, only: [:index]
+  
 
   def index
-    render json: @app.managers
+    begin
+      authorize! :read, @app.managers, :message => "Permissão insuficiente para visualizar Gerentes"
+      render json: @app.managers
+    rescue => exception
+      render json: { error: exception }, status: :unauthorized
+    end
   end
 
   # GET /managers/:id
