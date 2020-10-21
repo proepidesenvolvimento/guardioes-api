@@ -1,22 +1,16 @@
 class ContentsController < ApplicationController
   # before_action :authenticate_admin!, only: [:create, :destroy, :update]
-  check_authorization
+  
+  before_action :set_user, :index
   before_action :set_content, only: [:show, :update, :destroy]
   
 
   # GET /contents
   def index
-    if current_user.nil? && current_manager.nil?
-      user = current_admin
-    elsif current_admin.nil? && current_user.nil?
-      user = current_manager
-    else
-      user = current_user
-    end
-    @contents = Content.user_country(user.app_id)
+    @contents = Content.user_country(@user.app_id)
 
     begin
-      authorize! :read, user
+      authorize! :read, :content
       render json: @contents
     rescue => exception
       render json: { error: exception }, status: :unauthorized
@@ -26,7 +20,7 @@ class ContentsController < ApplicationController
   # GET /contents/1
   def show
     begin
-      authorize! :read, @content
+      authorize! :read, @user
       render json: @content
     rescue => exception
       render json: { error: exception }, status: :unauthorized
@@ -72,6 +66,17 @@ class ContentsController < ApplicationController
   end
 
   private
+  def set_user
+    if current_user.nil? && current_manager.nil?
+      @user = current_admin
+    elsif current_admin.nil? && current_user.nil?
+      @user = current_manager
+      @type = 'current_manager'
+    else
+      @user = current_user
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_content
       @content = Content.find(params[:id])

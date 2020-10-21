@@ -1,18 +1,19 @@
 class SymptomsController < ApplicationController
+  before_action :set_user, :index
+  authorize_resource :class => false
   before_action :authenticate_admin!, except: [:index]
   before_action :set_symptom, only: [:show, :update, :destroy]
 
   # GET /symptoms
   def index
-    if current_user.nil?
-      user = current_admin
-    else
-      user = current_user
+    @symptoms = Symptom.filter_symptom_by_app_id(@user.app_id)
+
+    begin
+      authorize! :read, :symptom
+      render json: @symptoms
+    rescue => exception
+      render json: { error: exception }, status: :unauthorized
     end
-
-    @symptoms = Symptom.filter_symptom_by_app_id(user.app_id)
-
-    render json: @symptoms
   end
 
   # GET /symptoms/1
@@ -52,6 +53,16 @@ class SymptomsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_symptom
       @symptom = Symptom.find(params[:id])
+    end
+
+    def set_user
+      if current_user.nil? && current_manager.nil?
+        @user = current_admin
+      elsif current_admin.nil? && current_user.nil?
+        @user = current_manager
+      else
+        @user = current_user
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
