@@ -8,5 +8,5 @@ class Manager < ApplicationRecord
          jwt_revocation_strategy: JWTBlacklist
 
   belongs_to :app
-  belongs_to :permission, dependent: :destroy
+  has_one :permission, dependent: :destroy
 end
