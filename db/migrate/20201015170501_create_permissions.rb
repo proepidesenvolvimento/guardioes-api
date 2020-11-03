@@ -8,6 +8,7 @@ class CreatePermissions < ActiveRecord::Migration[5.2]
       t.text :models_manage
 
       t.timestamps
+      #right
     end
   end
 end

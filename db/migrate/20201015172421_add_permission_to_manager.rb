@@ -5,3 +5,4 @@ class AddPermissionToManager < ActiveRecord::Migration[5.2]
     add_reference :group_managers, :permission, foreign_key: true
   end
 end
+#Permission migration
