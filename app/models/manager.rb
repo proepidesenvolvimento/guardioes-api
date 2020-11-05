@@ -9,4 +9,5 @@ class Manager < ApplicationRecord
 
   belongs_to :app
   has_one :permission, dependent: :destroy
+  accepts_nested_attributes_for :permission
 end

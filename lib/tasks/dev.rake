@@ -36,6 +36,12 @@ namespace :dev do
             app_id: 1
           )
         end
+        Manager.create!(
+          email: Faker::Internet.email,
+          password: "12345678",
+          first_name: Faker::Name.first_name
+          app_id: 1
+        )
       end
     end
 
