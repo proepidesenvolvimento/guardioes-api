@@ -8,7 +8,7 @@ class Ability
     case user
       when Admin
         if user.is_god?
-          can :create, :content
+          can :manage, :all
         else 
           can [:manage], [:manager, :group_manager, :symptom, :syndrome, :content, :user]
         end
