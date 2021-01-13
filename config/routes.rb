@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get "surveys/school_unit/:id", to: "surveys#group_data"
   get "users/school_unit/:id", to: "users#group_data"
 
+  get "analysis/:id", to: "users#analysis"
+  
   get "surveys/all_surveys", to: "surveys#all_surveys"
   #get "surveys/week", to: "surveys#weekly_surveys"
   #get "surveys/week_limited", to: "surveys#limited_surveys"
