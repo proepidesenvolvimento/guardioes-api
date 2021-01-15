@@ -115,5 +115,35 @@ class User < ApplicationRecord
     return message.feedback_message
   end
 
+  def analysis
+      if self.created_at < Date.parse('2020-06-10')
+        user_survey_limit_date = Date.parse('2020-09-30')
+        user_created_at = Date.parse('2020-06-10')
+      else
+        user_survey_limit_date = self.created_at + 112.days
+        user_created_at = self.created_at
+      end
+
+      user_surveys = Survey.where(user_id: self.id).where("DATE(created_at) >= ?", user_created_at).where("DATE(created_at) <= ?", user_survey_limit_date)
+
+      user_total_surveys = user_surveys.count
+
+      user_double_reports = user_surveys.select("DATE(created_at)").group("DATE(created_at)").having("count(*) > 1").size
+
+      user_days_of_double_reports = user_double_reports.count
+
+      sum = 0
+      user_double_reports.each do |key, value| 
+          sum =  sum + value
+      end
+    
+      user_total_of_double_reports = sum
+
+      total_reports = user_total_surveys - (user_total_of_double_reports - user_days_of_double_reports)
+       
+
+    return {count: total_reports, initial_date: user_created_at.to_formatted_s(:long),limit_date: user_survey_limit_date.to_formatted_s(:long)}
+  end
+
   scope :user_by_app_id, ->(current_user_app_id) { where(app_id: current_user_app_id) }
 end

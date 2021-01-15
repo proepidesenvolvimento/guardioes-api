@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   # before_action :authenticate_admin!, only: [:query_by_param, :admin_update]
-  before_action :authenticate_user!, except: [:index, :panel_list, :show, :update, :destroy, :create, :query_by_param, :email_reset_password, :reset_password, :show_reset_token, :admin_update, :analysis]
+  before_action :authenticate_user!, except: [:index, :panel_list, :show, :update, :destroy, :create, :query_by_param, :email_reset_password, :reset_password, :show_reset_token, :admin_update]
   before_action :authenticate_group_manager!, only: [:group_data]
   before_action :set_user_update, only: [:update, :admin_update]
   before_action :set_group, only: [:group_data]
-  load_and_authorize_resource :except => [:email_reset_password, :reset_password, :show_reset_token, :analysis] 
+  load_and_authorize_resource :except => [:email_reset_password, :reset_password, :show_reset_token] 
 
   # GET /user
   def index
@@ -137,38 +137,6 @@ class UsersController < ApplicationController
       end 
     end
     paginate @user, per_page: 50
-  end
-
-  #Route: GET/analysis/:id
-  def analysis
-    @user = User.find(params[:id])
-
-      if @user.created_at < Date.parse('2020-06-10')
-        @user_survey_limit_date = Date.parse('2020-09-30')
-        @user_created_at = Date.parse('2020-06-10')
-      else
-        @user_survey_limit_date = @user.created_at + 112.days
-        @user_created_at = @user.created_at
-      end
-
-      @user_surveys = Survey.where(user_id: @user.id).where("DATE(created_at) >= ?", @user_created_at).where("DATE(created_at) <= ?", @user_survey_limit_date)
-
-      @user_total_surveys = @user_surveys.count
-
-      @user_double_reports = @user_surveys.select("DATE(created_at)").group("DATE(created_at)").having("count(*) > 1").size
-
-      @user_days_of_double_reports = @user_double_reports.count
-
-      sum = 0
-      @user_double_reports.each do |key, value| 
-          sum =  sum + value
-      end
-    
-      @user_total_of_double_reports = sum
-
-      @total_reports = @user_total_surveys - (@user_total_of_double_reports - @user_days_of_double_reports) 
-
-    render json: @total_reports
   end
 
 private

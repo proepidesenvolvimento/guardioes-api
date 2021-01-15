@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :user_name, :email, :birthdate, :country, :gender, :race, :is_professional, :picture, :city, :state, :identification_code, :group_id, :school_unit_id, :risk_group, :group, :streak, :policy_version, :created_at, :is_vigilance, :phone, :identification_code
+  attributes :id, :user_name, :email, :birthdate, :country, :gender, :race, :is_professional, :picture, :city, :state, :identification_code, :group_id, :school_unit_id, :risk_group, :group, :streak, :policy_version, :created_at, :is_vigilance, :phone, :identification_code, :analysis
 
   belongs_to :app do
     link(:app) {app_url(object.app.id)}
@@ -7,6 +7,10 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :households 
   # has_many :surveys
+
+  def analysis
+    object.analysis
+  end
 
   def group
     if object.group.nil?
