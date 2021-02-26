@@ -10,12 +10,11 @@
 
 <% if !@survey.household.nil? %>
   <h4>Familiar com sintomas </h4>
-  <p>ID: <%= @survey.household.id %></p>
-  <p>Parentesco: <%= @survey.household.kinship %></p>
-  <p>Nome: <%= @user.household.description %></p>
-  <p>Sexo: <%= @user.household.gender %></p>
-  <p>Data de Nascimento: <%= @user.household.birthdate.strftime("%d, %m, %Y").gsub!(', ', '/') %></p>
-  <p>Departamento: <%= @user.household.group.parent.description %></p>
+  <p>Id: <%= @household.id %></p>
+  <p>Parentesco: <%= @household.kinship %></p>
+  <p>Nome: <%= @household.description %></p>
+  <p>Sexo: <%= @household.gender %></p>
+  <p>Data de Nascimento: <%= @household.birthdate.strftime("%d, %m, %Y").gsub!(', ', '/') %></p>
   <% end %> 
 
 <h4>Sintomas: </h4>

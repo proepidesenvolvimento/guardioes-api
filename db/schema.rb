@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_15_221201) do
+ActiveRecord::Schema.define(version: 2021_02_19_222415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2020_12_15_221201) do
     t.string "vigilance_email"
     t.string "aux_code"
     t.text "vigilance_syndromes", default: ""
+    t.text "username_godata", default: ""
+    t.text "password_godata", default: ""
     t.index ["app_id"], name: "index_group_managers_on_app_id"
     t.index ["email"], name: "index_group_managers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_group_managers_on_reset_password_token", unique: true
@@ -103,7 +105,8 @@ ActiveRecord::Schema.define(version: 2020_12_15_221201) do
     t.string "phone"
     t.string "email"
     t.integer "group_manager_id"
-    t.text "vigilance_syndromes", default: ""
+    t.text "location_name_godata"
+    t.text "location_id_godata"
     t.index ["deleted_at"], name: "index_groups_on_deleted_at"
     t.index ["parent_id"], name: "index_groups_on_parent_id"
   end
@@ -171,6 +174,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_221201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "symptom_id"
+    t.string "feedback_message"
     t.integer "day", default: -1
     t.index ["symptom_id"], name: "index_messages_on_symptom_id"
     t.index ["syndrome_id"], name: "index_messages_on_syndrome_id"
@@ -262,8 +266,10 @@ ActiveRecord::Schema.define(version: 2020_12_15_221201) do
     t.string "traveled_to"
     t.string "contact_with_symptom"
     t.boolean "went_to_hospital"
+    t.bigint "syndrome_id"
     t.index ["deleted_at"], name: "index_surveys_on_deleted_at"
     t.index ["household_id"], name: "index_surveys_on_household_id"
+    t.index ["syndrome_id"], name: "index_surveys_on_syndrome_id"
     t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 
@@ -359,6 +365,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_221201) do
   add_foreign_key "pre_registers", "apps"
   add_foreign_key "public_hospitals", "apps"
   add_foreign_key "surveys", "households"
+  add_foreign_key "surveys", "syndromes"
   add_foreign_key "surveys", "users"
   add_foreign_key "symptoms", "apps"
   add_foreign_key "symptoms", "messages"

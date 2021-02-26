@@ -65,8 +65,8 @@ class Survey < ApplicationRecord
           group_manager[:vigilance_syndromes].each do |vs|
             if vs[:syndrome_id] == obj[:syndrome].id
               self.update_attribute(:syndrome_id, vs[:syndrome_id])
-              if vs[:surto_id]
-                report_go_data(group_manager, vs)
+              if vs[:surto_id]  && self.household_id == nil
+                report_go_data(group_manager, vs) 
               end
               VigilanceMailer.vigilance_email(self, user, obj[:syndrome]).deliver
             end
@@ -133,7 +133,7 @@ class Survey < ApplicationRecord
       password_godata = crypt.decrypt_and_verify(group_manager.password_godata)
     rescue
     end
-    uri = URI('https://inclusaodigital.unb.br/api/oauth/token')
+    uri = URI("#{ENV['GODATA_URL']}/api/oauth/token")
     res = HTTParty.post(uri, body: { username: group_manager.username_godata, password: password_godata })
     if (res.code != 200)
       return
@@ -142,13 +142,10 @@ class Survey < ApplicationRecord
 
 
     # check if case with user already exists
-    uri = URI("https://inclusaodigital.unb.br/api/outbreaks/#{vigilance_syndrome[:surto_id]}/cases/generate-visual-id")
+    uri = URI("#{ENV['GODATA_URL']}/api/outbreaks/#{vigilance_syndrome[:surto_id]}/cases/generate-visual-id")
     res = HTTParty.post(uri, body: { 'visualIdMask' => 'GDS_' + self.user.id.to_s }, headers: { Authorization: 'Bearer ' + token})
-    if res.code == 409
-      return
-    end
-
-    # creating case's data
+    if res.code != 409
+    #creating case's data
     age = ((Time.zone.now - self.user.birthdate.to_time) / 1.year.seconds).floor
     races = {
       'Branco' => '1',
@@ -210,24 +207,31 @@ class Survey < ApplicationRecord
 
     
     
-    if self.user.group
-      self.user.group.get_path.each do |g|
-        if g[:description] == "Universidade de Brasilia"
-          caseData['addresses'] = [
+    if self.user.group      
+      if self.user.group.location_id_godata == nil
+          if self.user.group.group_manager_id == 4
+              group_location_id = "8101b71b-dbaa-4d3e-b585-459513c1f23a"   
+            elsif self.user.group.group_manager_id == 7
+              group_location_id = "a3e632e3-3955-4f45-978a-4e835204420c"
+          end
+        else
+          group_location_id = self.user.group.location_id_godata
+      end
+
+      caseData['addresses'] = [
             {
               "typeId": "LNG_REFERENCE_DATA_CATEGORY_ADDRESS_TYPE_USUAL_PLACE_OF_RESIDENCE",
               "country": 'Brasil',
-              "city": 'Brasília',
-              "addressLine1": 'Universidade de Brasília',
-              "postalCode": '70910-900',
-              "locationId": "783b11f6-f862-4fb0-a663-e26c342e7ab1",
+              "city": self.user.city,
+              "addressLine1": self.user.group.description,
+              #"postalCode": '70910-900', #Nao posuimos CEP em nossos cadastros
+              "locationId": group_location_id,
               "geoLocationAccurate": false,
               "date": self.created_at,
-              "phoneNumber": self.user.phone
+              "phoneNumber": self.user.phone,
+              "emailAddress": self.user.email
             }
           ]
-        end
-      end
     end
 
     if self.user.user_name.split(" ").length > 1
@@ -244,11 +248,6 @@ class Survey < ApplicationRecord
       'profissional_da_saude' => [
         {
           'value' => self.user.is_professional == true ? '1' : '2'
-        }
-      ],
-      'e_mail' => [
-        {
-          'value': self.user.email,
         }
       ],
       'se_foi_ao_hospital' => [
@@ -279,8 +278,9 @@ class Survey < ApplicationRecord
       caseData['questionnaireAnswers']['sintomas'] = [{'value': '1'}]
     end
 
-    uri = URI("https://inclusaodigital.unb.br/api/outbreaks/#{vigilance_syndrome[:surto_id]}/cases")
+    uri = URI("#{ENV['GODATA_URL']}/api/outbreaks/#{vigilance_syndrome[:surto_id]}/cases")
     res = HTTParty.post(uri, body: caseData, headers: { Authorization: 'Bearer ' + token})
+    end
   end
 
   def csv_data

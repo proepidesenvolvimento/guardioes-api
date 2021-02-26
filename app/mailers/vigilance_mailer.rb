@@ -6,6 +6,10 @@ class VigilanceMailer < ActionMailer::Base
     @survey = survey
     @user = user
     @syndrome = syndrome
+
+    if survey.household_id != nil
+      @household = Household.find(survey.household_id)
+    end
     
     @date = @user.birthdate.strftime("%d, %m, %Y")
     @date.gsub!(', ', '/')
