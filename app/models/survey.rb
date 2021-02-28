@@ -278,6 +278,11 @@ class Survey < ApplicationRecord
       caseData['questionnaireAnswers']['sintomas'] = [{'value': '1'}]
     end
 
+    #Active Outbreak before report case
+    uri = URI("#{ENV['GODATA_URL']}/api/users/#{group_manager.userid_godata}")
+    res = HTTParty.patch(uri, body: {activeOutbreakId: vigilance_syndrome[:surto_id]}, headers: { Authorization: 'Bearer ' + token})
+
+    #Report case
     uri = URI("#{ENV['GODATA_URL']}/api/outbreaks/#{vigilance_syndrome[:surto_id]}/cases")
     res = HTTParty.post(uri, body: caseData, headers: { Authorization: 'Bearer ' + token})
     end
