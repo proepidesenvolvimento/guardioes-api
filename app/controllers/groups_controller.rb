@@ -286,7 +286,9 @@ class GroupsController < ApplicationController
         :cep,
         :phone,
         :email,
-        :group_manager_id
+        :group_manager_id,
+        :location_name_godata,
+        :location_id_godata
       )
     end
 

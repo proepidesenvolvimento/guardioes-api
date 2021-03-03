@@ -39,4 +39,4 @@ services:
       METABASE_SITE_URL: http://localhost:3002
       METABASE_SECRET_KEY:
       GODATA_KEY:
-      GODATA_URL: 
+      GODATA_URL:
